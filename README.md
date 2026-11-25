@@ -1,5 +1,6 @@
 🇬🇧 English · 🇪🇸 [Español](README.es.md)
 
+🎬 **Video walkthrough (English, ~9 min) of all four portfolio projects:** [watch](https://github.com/close-cr/close-cr/blob/main/media/portfolio-walkthrough.mp4)
 # Tumor classification with scikit-learn (and why accuracy is misleading)
 
 A supervised-learning project on the public **Breast Cancer Wisconsin (Diagnostic)** dataset, bundled with scikit-learn (569 cases, 30 numeric measurements each, no missing values). The goal is not to "reach 99 %": it is to show **how to evaluate a model properly**: split the data first, avoid leakage, choose the model and the threshold without looking at the test set, and report the metric that matters for the problem.

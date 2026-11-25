@@ -1,5 +1,6 @@
 🇬🇧 [English](README.md) · 🇪🇸 Español
 
+🎬 **Video (en inglés, ~9 min) que explica los cuatro proyectos del portafolio:** [verlo](https://github.com/close-cr/close-cr/blob/main/media/portfolio-walkthrough.mp4)
 # Clasificación de tumores con scikit-learn (y por qué la exactitud engaña)
 
 Proyecto de Machine Learning supervisado sobre el conjunto público **Breast Cancer Wisconsin (Diagnostic)**, que viene incluido en scikit-learn (569 casos, 30 medidas numéricas por caso, sin valores faltantes). El objetivo no es «lograr 99 %», sino mostrar **cómo se evalúa bien un modelo**: separar datos, evitar fugas, elegir el modelo y el umbral sin mirar la prueba, y reportar la métrica que importa para el problema.
