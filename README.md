@@ -74,3 +74,41 @@ Figuras: `figuras/matriz_confusion.png`, `figuras/precision_recall.png`, `figura
 2. Repetir con validación cruzada anidada para elegir hiperparámetros sin sesgo.
 3. Calibrar las probabilidades y revisar la curva de calibración.
 4. Probar con otro dataset tabular (por ejemplo uno con clases muy desbalanceadas) para ver el efecto del umbral.
+
+## Experimentos
+
+Se corren con `uv run --with scikit-learn --with matplotlib --with pandas python experimentos.py`. Salida real.
+
+### 1. Cambiar la semilla (misma regla: umbral con recall ≥ 0,97 en validación)
+
+| Semilla | Umbral elegido | Recall en prueba | Precisión en prueba | FN | FP | Malignos en prueba |
+|---|---|---|---|---|---|---|
+| 0 | 0,418 | 0,952 | 0,909 | 2 | 4 | 42 |
+| 7 | 0,376 | 0,952 | 0,976 | 2 | 1 | 42 |
+| 42 | 0,315 | 0,952 | 0,976 | 2 | 1 | 42 |
+| 123 | 0,288 | 0,976 | 0,837 | 1 | 8 | 42 |
+| 2024 | 0,444 | 0,929 | 0,975 | 3 | 1 | 42 |
+
+Recall en prueba: mínimo 0,929, máximo 0,976, media 0,952. **El umbral elegido varía mucho** (de 0,288 a 0,444) y la precisión también (0,837 a 0,976). Con 42 malignos en la prueba, un caso cambia el recall 2,4 puntos: el resultado de una sola semilla no es una cifra fija. Por eso conviene hablar de «alrededor de 95 %» y no de una cifra exacta.
+
+### 2. Objetivo de recall ≥ 0,99 en validación (semilla 42)
+
+El umbral baja a 0,094: recall 0,976 (1 falso negativo) pero precisión 0,891 (5 falsos positivos). Querer más recall se paga con más falsas alarmas, y el 0,99 de validación tampoco se alcanza en la prueba.
+
+### 3. Sin escalado de variables (semilla 42, solo entrenamiento)
+
+| | Recall | F1 | Avisos |
+|---|---|---|---|
+| Sin escalado | 0,924 | 0,937 | `ConvergenceWarning` |
+| Con escalado | 0,953 | 0,964 | ninguno |
+
+Sin escalar, la regresión logística converge peor y rinde menos.
+
+### 4. Fuga de datos: escalar todo antes de separar
+
+| | Recall | F1 |
+|---|---|---|
+| Con fuga | 0,953 | 0,964 |
+| Sin fuga (pipeline) | 0,953 | 0,964 |
+
+**En este conjunto no hay diferencia visible**: la fuga por escalado es sutil porque la media y la desviación de todo el conjunto se parecen mucho a las del entrenamiento. Eso **no** significa que la regla sobre la fuga sea inútil: con imputación de datos faltantes, selección de variables o codificaciones aprendidas de los datos, la fuga sí puede inflar los resultados. Aquí la regla se sigue por prevención, no porque este experimento la haya demostrado.
