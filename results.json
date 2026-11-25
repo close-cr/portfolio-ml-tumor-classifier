@@ -1,11 +1,11 @@
 {
-  "filas": 569,
-  "columnas": 30,
-  "valores_faltantes": 0,
-  "malignos": 212,
-  "benignos": 357,
-  "validacion_cruzada": {
-    "Base (siempre «benigno»)": {
+  "rows": 569,
+  "columns": 30,
+  "missing_values": 0,
+  "malignant": 212,
+  "benign": 357,
+  "cross_validation": {
+    "Baseline (always «benign»)": {
       "accuracy": [
         0.6264,
         0.0
@@ -27,7 +27,7 @@
         0.0
       ]
     },
-    "Regresión logística": {
+    "Logistic regression": {
       "accuracy": [
         0.9736,
         0.0149
@@ -72,43 +72,43 @@
       ]
     }
   },
-  "modelo_elegido": "Regresión logística",
-  "umbral": 0.3147,
-  "prueba": {
-    "umbral 0,5": {
-      "umbral": 0.5,
+  "chosen_model": "Logistic regression",
+  "threshold": 0.3147,
+  "test": {
+    "threshold 0.5": {
+      "threshold": 0.5,
       "accuracy": 0.9649,
       "precision": 0.975,
       "recall": 0.9286,
       "f1": 0.9512,
-      "VP": 39,
+      "TP": 39,
       "FP": 1,
-      "VN": 71,
+      "TN": 71,
       "FN": 3
     },
-    "umbral elegido": {
-      "umbral": 0.315,
+    "chosen threshold": {
+      "threshold": 0.315,
       "accuracy": 0.9737,
       "precision": 0.9756,
       "recall": 0.9524,
       "f1": 0.9639,
-      "VP": 40,
+      "TP": 40,
       "FP": 1,
-      "VN": 71,
+      "TN": 71,
       "FN": 2
     },
     "roc_auc": 0.996,
-    "base_siempre_benigno": {
+    "baseline_always_benign": {
       "accuracy": 0.6316,
       "recall": 0.0
     }
   },
-  "sobreajuste": {
-    "exactitud_entrenamiento": 0.9868,
-    "exactitud_prueba": 0.9649,
-    "brecha": 0.0219
+  "overfitting": {
+    "train_accuracy": 0.9868,
+    "test_accuracy": 0.9649,
+    "gap": 0.0219
   },
-  "variables_top5": [
+  "top5_variables": [
     [
       "worst texture",
       1.434
